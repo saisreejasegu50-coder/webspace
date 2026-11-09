@@ -1,0 +1,23 @@
+# Daylight
+
+Daylight is a small personal workspace for planning tasks, tracking expenses, and keeping quick notes. It is built with plain HTML, CSS, and JavaScript.
+
+## Features
+
+- **Task planner** — add tasks, mark them complete, delete them, and filter by status.
+- **Money tracker** — record expenses by category, set a monthly budget, and see your spending total.
+- **Quick notes** — create, edit, delete, categorize, and search notes.
+
+## Run locally
+
+No dependencies, build step, or server are required. Open `index.html` in a modern browser.
+
+## Data and privacy
+
+Tasks, expenses, notes, and the budget are saved in your browser's local storage on this device. They are not synced to a server. Clearing the browser's site data will remove them. Expenses are displayed in US dollars.
+
+## Project files
+
+- `index.html` — app structure and forms
+- `style.css` — layout and styling
+- `script.js` — interactions and local data storage
