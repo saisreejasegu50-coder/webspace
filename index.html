@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <title>Daylight — your daily workspace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">✦</span><span class="brand-name">daylight</span></div>
+      <p class="nav-label">YOUR WORKSPACE</p>
+      <nav class="nav" aria-label="Apps">
+        <button class="nav-button active" data-page="tasks"><span class="nav-icon">☑</span>Task planner</button>
+        <button class="nav-button" data-page="money"><span class="nav-icon">◉</span>Money tracker</button>
+        <button class="nav-button" data-page="notes"><span class="nav-icon">▤</span>Quick notes</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-tip"><strong>A little progress adds up ✨</strong><p>Keep your goals close and make today count.</p></div>
+        <div class="profile"><span class="avatar">Y</span><span><strong>Your workspace</strong><small>Personal space</small></span></div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">✦</span>daylight</div>
+        <div class="date-note">A fresh start, <strong id="today-label"></strong></div>
+        <div class="top-actions"><button class="icon-button" id="help-button" aria-label="Help" title="How it works">?</button></div>
+      </header>
+      <div class="content">
+        <section class="page active" id="tasks-page">
+          <div class="heading-row">
+            <div><div class="eyebrow">YOUR DAY, YOUR WAY</div><h1>Task planner</h1><p class="subtitle">Make space for what matters today.</p></div>
+            <button class="primary-button" id="add-task-button">＋ Add a task</button>
+          </div>
+          <div class="stats">
+            <div class="stat-card"><span class="stat-label">Tasks today</span><strong class="stat-value" id="task-total">0</strong><span class="stat-hint">A plan you can feel good about</span></div>
+            <div class="stat-card"><span class="stat-label">Completed</span><strong class="stat-value" id="task-done">0</strong><span class="stat-hint">Every little win counts</span></div>
+            <div class="stat-card"><span class="stat-label">Still to do</span><strong class="stat-value" id="task-left">0</strong><span class="stat-hint">One step at a time</span></div>
+          </div>
+          <section class="panel">
+            <div class="panel-head"><h2>My tasks</h2><div class="filters" aria-label="Filter tasks">
+              <button class="filter-button active" data-filter="all">All</button>
+              <button class="filter-button" data-filter="active">To do</button>
+              <button class="filter-button" data-filter="done">Done</button>
+            </div></div>
+            <div class="list" id="task-list"></div>
+          </section>
+        </section>
+
+        <section class="page" id="money-page">
+          <div class="heading-row">
+            <div><div class="eyebrow" style="color:var(--mint)">MIND YOUR MONEY</div><h1>Money tracker</h1><p class="subtitle">See where your spending goes, without the stress.</p></div>
+          </div>
+          <div class="expense-grid">
+            <div>
+              <div class="balance-card"><span class="stat-label">Spent this month</span><strong class="stat-value" id="spent-total">$0.00</strong><p id="spent-caption">Start logging expenses to see your total.</p></div>
+              <section class="panel">
+                <div class="panel-head"><h2>Recent expenses</h2><span id="expense-count">0 entries</span></div>
+                <div class="list" id="expense-list"></div>
+              </section>
+            </div>
+            <div class="expense-side">
+              <section class="panel budget-card">
+                <h2>Monthly budget</h2><p>Set a limit that feels right for you.</p>
+                <div class="progress"><div class="progress-fill" id="budget-progress"></div></div>
+                <div class="budget-foot"><span id="budget-used">$0 spent</span><span id="budget-limit">of $1,000</span></div>
+                <div class="field" style="margin:15px 0 0"><label for="budget-input">Your monthly limit ($)</label><input id="budget-input" type="number" min="1" step="1" placeholder="1000"></div>
+                <button class="primary-button" id="save-budget">Update budget</button>
+              </section>
+              <form class="panel form-panel" id="expense-form">
+                <h2>Add an expense</h2>
+                <div class="field"><label for="expense-name">What was it?</label><input id="expense-name" maxlength="60" placeholder="e.g. Coffee with Maya" required></div>
+                <div class="field"><label for="expense-amount">Amount ($)</label><input id="expense-amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div>
+                <div class="field"><label for="expense-category">Category</label><select id="expense-category">
+                  <option>Food</option><option>Transport</option><option>Shopping</option><option>Bills</option><option>Fun</option><option>Other</option>
+                </select></div>
+                <button class="primary-button" type="submit">＋ Save expense</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="notes-page">
+          <div class="heading-row">
+            <div><div class="eyebrow" style="color:#e3a23b">SAVE A THOUGHT</div><h1>Quick notes</h1><p class="subtitle">Keep ideas, reminders, and little bits of inspiration close.</p></div>
+          </div>
+          <div class="notes-toolbar">
+            <label class="notes-search"><span aria-hidden="true">⌕</span><input id="note-search" type="search" placeholder="Search your notes..." aria-label="Search notes"></label>
+            <span class="notes-count" id="notes-count">0 notes</span>
+          </div>
+          <form class="panel note-composer" id="note-form">
+            <input id="note-id" type="hidden">
+            <div class="field"><label for="note-title">Title</label><input id="note-title" maxlength="70" placeholder="Give your note a title" required></div>
+            <div class="field"><label for="note-body">Your note</label><textarea id="note-body" maxlength="1200" rows="4" placeholder="Write down an idea, a reminder, or anything you want to remember..." required></textarea></div>
+            <div class="note-form-footer"><label class="note-category-label" for="note-category">Category</label><select id="note-category"><option>Personal</option><option>Ideas</option><option>Work</option><option>Reminder</option></select><button class="primary-button" id="save-note" type="submit">＋ Save note</button><button class="secondary-button" id="cancel-note" type="button" hidden>Cancel edit</button></div>
+          </form>
+          <div class="notes-grid" id="notes-list" aria-live="polite"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <dialog id="task-dialog">
+    <form class="dialog-content" id="task-form">
+      <h2>Add a task</h2>
+      <p>Choose one small thing to focus on.</p>
+      <div class="field"><label for="task-name">Task name</label><input id="task-name" maxlength="80" placeholder="What would you like to get done?" required></div>
+      <div class="field"><label for="task-category">Category</label><select id="task-category"><option>Personal</option><option>Work</option><option>Wellbeing</option><option>Focus</option></select></div>
+      <div class="dialog-actions"><button class="secondary-button" type="button" id="cancel-task">Cancel</button><button class="primary-button" type="submit">Add task</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>
